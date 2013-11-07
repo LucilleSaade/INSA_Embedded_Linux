@@ -1,0 +1,67 @@
+###################
+# Arborescence OE #
+###################
+build : dossier ou on construit les paquets
+build/tmp*/deploy/images : dossier ou on construit les images (kernel, bootloader, rootfs )
+build/tmp*/work/*/ : dossier ou on construit les paquets ( * correspond aux différentes architectures cible et hote )
+conf/ : fichier de configuration de OE
+
+sources/meta-* : ensemble de fichier contenant les recettes pour fabriquer les images
+sources/meta-eukrea/ : Toutes les recettes faites par Eukrea
+sources/meta-eukrea/recipes-eukrea/images/ : Liste des images possible pour cette cible
+sources/meta-eukrea/conf/machine/eukrea-cpuimx51.conf : Paramètres spécifiques à la carte
+
+
+##########################################################
+# Récuperation du script d'Eukréa et des sources pour OE #
+##########################################################
+
+git clone git://git.eukrea.fr/eukrea-oe/setup-scripts.git -b eukrea-denzil
+# Récupération des sources OE
+cd setup-scripts
+./oebb.sh config eukrea-cpuimx51
+
+# Pour récupérer bitbake et l'environnement OE (à faire dans chaque terminal )
+source .oe/environment-oecore
+
+# Récupération des sources de logiciels à construire (optionnel: permet la construction hors ligne)
+bitbake -c fetch eukrea-base-image
+
+# Construction des images
+bitbake eukrea-base-image
+# On récupére les binaires dans build/tmp*/deploy/images/
+
+
+####################
+# Commandes utiles #
+####################
+
+bitbake -s : Liste de tous les packages supportés
+bitbake <package|image> : construit un paquetou une image spécifique
+bitbake -c listtask <package|image> : récupere la liste des taches pour construire la cible
+bitbake -c devshell <package|image> : lance un shell dans l'environnement de la cible (utile pour le debug des recipes)
+bitbake -b <recette> : construit à partir de la recette
+bitbake -f -c compile <package> : force la recompilation
+bitbake meta-toolchain : construit un paquet contenant la toolchain dans setup-scripts/build/tmp*/deploy/sdk/
+
+
+##########################################################
+# Créer votre propre layer OE dans setup-scripts/sources #
+##########################################################
+
+mkdir meta-insa
+mkdir meta-insa/conf
+cp meta-eukrea/conf/layer.conf meta-insa/conf
+# dans meta-insa/conf/layer.conf remplacer tous les "meta-eukrea" par "meta-insa" et "9" par "10"
+sed -i 's/meta-eukrea/meta-insa/g' meta-insa/conf/layer.conf
+sed -i 's/9/10/g' meta-insa/conf/layer.conf
+cd meta-insa
+mkdir recipes-drivers
+mkdir recipes-drivers/led
+mkdir recipes-drivers/led/led/
+touch recipes-drivers/led/led/led.c
+touch recipes-drivers/led/led/Makefile
+touch recipes-drivers/led/led_0.1.bb
+
+# On enregistre notre meta dans OE via setup-scripts/conf/bblayers.conf
+# On ajoute notre layer dans la variable EXTRALAYERS (s'inspirer des autres meta ajoutés)

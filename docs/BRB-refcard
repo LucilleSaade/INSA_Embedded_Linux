@@ -1,0 +1,16 @@
+# fichier de config au démarrage:
+ env/config
+
+# fichier de boot 
+/env/bin/config
+
+# Changement de la config de démarrage du bootloader
+# Interrompre le bootloader
+# Dans /env/bin , créer un script « boot_sd » : (edit)	
+	# !/bin/sh
+	mci0.probe=1
+	mkdir /mnt
+	mount /dev/disk0.0 fat /mnt
+	bootargs="console=ttymxc0,115200 root=/dev/mmcblk0p2 rootwait"
+	bootm /mnt/uImage
+saveenv

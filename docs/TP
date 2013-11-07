@@ -1,0 +1,36 @@
+Linux embarqué : Objectif du TP 
+
+
+Prérequis récupérer les sources:
+> git clone git://git.eukrea.fr/eukrea-oe/setup-scripts.git -b eukrea-denzil
+> cd setup-scripts
+> ./oebb.sh config eukrea-cpuimx51
+> source .oe/environment-oecore
+> bitbake -c fetch eukrea-base-image
+> bitbake eukrea-base-image
+On récupére les binaires dans build/tmp*/deploy/images/
+
+
+1. Prendre en main l'architecture d'OE et les commandes de base.
+
+2. Ajouter un paquet avec un module noyau helloworld de base.
+
+3. Construire kernel et rootfs puis les tester sur la carte SD. Charger le module.
+
+4. Désactiver le code utilisant la LED rouge de la carte. Faire un patch. 
+   Ajouter le patch à OE, reconstruire le noyau et vérifier que la LED ne clignote plus.
+   Piloter le GPIO de la LED depuis l'espace utilisateur.
+
+5. Controler la LED depuis le module noyau. 
+   Essayer de rajouter des fonctionnalités (stats, frequence, communication en morse, ... )
+
+6. Exporter la toolchain d'openembedded.
+   Porter le BSP ( Kernel uniquement ) et le module sur BR.
+   Tester sur SD
+
+7. Construire une image ubifs du rootfs et ajouter le support d'UBI dans le kernel si besoin.
+   Installer les briques logicielles sur la NAND.
+
+[BR] : buildroot
+[OE] : openembedded
+
