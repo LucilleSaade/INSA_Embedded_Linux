@@ -1,8 +1,7 @@
 #!/bin/sh
 
-cd ~
-git clone git://git.eukrea.fr/eukrea-oe/setup-scripts.git -b eukrea-denzil
-cd setup-scripts
+git clone git://git.eukrea.fr/eukrea-oe/setup-scripts.git openembedded -b eukrea-denzil
+cd openembedded
 ./oebb.sh config eukrea-cpuimx51
 source .oe/environment-oecore
 bitbake -c fetch eukrea-base-image
