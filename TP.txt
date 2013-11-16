@@ -34,3 +34,10 @@ On récupére les binaires dans build/tmp*/deploy/images/
 [BR] : buildroot
 [OE] : openembedded
 
+Documentation:
+* http://www.openembedded.org/wiki/Main_Page
+* http://www.yoctoproject.org/docs/current/mega-manual/mega-manual.html
+* http://tldp.org/LDP/lkmpg/2.6/html/lkmpg.html
+* https://www.kernel.org/doc/Documentation/gpio.txt
+* http://processors.wiki.ti.com/index.php/GPIO_Driver_Guide
+* http://buildroot.uclibc.org
