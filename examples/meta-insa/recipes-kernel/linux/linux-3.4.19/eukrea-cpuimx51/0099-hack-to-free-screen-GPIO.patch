@@ -15,7 +15,7 @@ index 8dfdb29..3a01670 100644
  	gpio_direction_output(GPIO_LCDRST, 0);
  	gpio_request(GPIO_LCDBL, "LCDBL");
  	gpio_direction_output(GPIO_LCDBL, 0);
-+	screen_type=0;
++	screen_type=1;
  	if (!screen_type) {
  		platform_device_register(&eukrea_mbimxsd51_bl_dev);
  		platform_device_register(&eukrea_mbimxsd51_lcd_powerdev);
