@@ -6,6 +6,7 @@ PR = "r0"
 
 SRC_URI = "file://led.c \
 	   file://led.h \
+	   file://ledctl.c \
 	   file://Makefile \
 	   file://LICENSE"
 
@@ -14,6 +15,7 @@ S = "${WORKDIR}"
 inherit module
 
 do_compile () {
+	${CC} -o ledctl ledctl.c ${CFLAGS} ${LDFLAGS}
 	unset CFLAGS CPPFLAGS CXXFLAGS LDFLAGS CC LD CPP
 	oe_runmake 'MODPATH="${D}${base_libdir}/modules/${KERNEL_VERSION}/kernel/drivers"' \
 		'KERNEL_SOURCE="${STAGING_KERNEL_DIR}"' \
@@ -26,6 +28,8 @@ do_compile () {
 
 do_install () {
 	install -d ${D}${base_libdir}/modules/${KERNEL_VERSION}/kernel/drivers
+	install -d ${D}/usr/bin
 	install -m 0644 ${S}/led*${KERNEL_OBJECT_SUFFIX} ${D}${base_libdir}/modules/${KERNEL_VERSION}/kernel/drivers
+	install -m 0644 ${S}/ledctl ${D}/usr/bin
 }
 
