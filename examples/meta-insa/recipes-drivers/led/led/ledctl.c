@@ -14,10 +14,7 @@ int main( int argc, char ** argv)
 		return  -1;
 	}
 
-	while (1)
-	{
-		sleep(1);
-	}
+	sleep(100);
 
 	close(fd);
 
