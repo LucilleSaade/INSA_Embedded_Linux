@@ -1,6 +1,6 @@
 DESCRIPTION = "servo control tool"
 LICENSE="GPLv2"
-LIC_FILES_CHKSUM = "file://../servoctl.c;beginline=1;endline=17;md5=2eefc827593fa1fcd83414f1f8773f47"
+LIC_FILES_CHKSUM = "file://../servoctl.c;beginline=1;endline=17;md5=4b0530b0bdc457f17d58d594cc3991b0"
 
 PR = "r0"
 
