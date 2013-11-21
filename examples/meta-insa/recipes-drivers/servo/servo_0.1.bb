@@ -27,8 +27,6 @@ FILE_${PN} += " /usr/bin/servoctl "
 
 do_install () {
 	install -d ${D}${base_libdir}/modules/${KERNEL_VERSION}/kernel/drivers
-	install -d ${D}/usr/bin
 	install -m 0644 ${S}/servo*${KERNEL_OBJECT_SUFFIX} ${D}${base_libdir}/modules/${KERNEL_VERSION}/kernel/drivers
-	install -m 0644 ${S}/servoctl ${D}/usr/bin/servoctl
 }
 
