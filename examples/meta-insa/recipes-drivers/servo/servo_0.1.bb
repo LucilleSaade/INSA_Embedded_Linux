@@ -13,7 +13,6 @@ S = "${WORKDIR}"
 inherit module
 
 do_compile () {
-	${CC} -o servoctl servoctl.c ${CFLAGS} ${LDFLAGS}
 	unset CFLAGS CPPFLAGS CXXFLAGS LDFLAGS CC LD CPP
 	oe_runmake 'MODPATH="${D}${base_libdir}/modules/${KERNEL_VERSION}/kernel/drivers"' \
 		'KERNEL_SOURCE="${STAGING_KERNEL_DIR}"' \
