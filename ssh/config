@@ -1,5 +1,5 @@
 
 Host srv-ens1
 	ProxyCommand  ssh compte12@geitp-dimer1 nc %h %p
-	
+	User toto
 	
