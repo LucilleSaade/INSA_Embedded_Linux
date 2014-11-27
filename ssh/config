@@ -1,5 +1,8 @@
 
 Host srv-ens1
-	ProxyCommand  ssh compte12@geitp-dimer1 nc %h %p
 	User toto
 	
+Host geitp
+	HostName geitp-dimer1
+	User compte12
+	ProxyCommand  ssh srv-ens1 nc %h %p
