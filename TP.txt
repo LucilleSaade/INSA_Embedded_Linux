@@ -13,9 +13,11 @@ On récupére les binaires dans build/tmp*/deploy/images/
 
 1. Prendre en main l'architecture d'OE et les commandes de base.
 
-2. Ajouter un paquet avec un module noyau helloworld de base.
 
-3. Construire kernel et rootfs puis les tester sur la carte SD. Charger le module.
+2. Ajouter un paquet avec un executable helloworld.
+   Ajouter un paquet avec un module noyau helloworld de base.
+
+3. Construire kernel et rootfs puis les tester sur la carte SD. Charger le module et tester l'executable.
 
 4. Désactiver le code utilisant la LED rouge de la carte. Faire un patch. 
    Ajouter le patch à OE, reconstruire le noyau et vérifier que la LED ne clignote plus.
